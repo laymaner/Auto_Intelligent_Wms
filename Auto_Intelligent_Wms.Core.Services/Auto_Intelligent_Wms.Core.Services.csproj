@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+		<PackageReference Include="Zack.EFCore.Batch.MSSQL_NET6" Version="6.1.9" />
+		<PackageReference Include="Drapper" Version="1.2.0" />
+		<PackageReference Include="Mapster" Version="7.4.0" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Auto_Intelligent_Wms.Core.Common\Auto_Intelligent_Wms.Core.Common.csproj" />
+    <ProjectReference Include="..\Auto_Intelligent_Wms.Core.IServices\Auto_Intelligent_Wms.Core.IServices.csproj" />
+    <ProjectReference Include="..\Auto_Intelligent_Wms.Core.Model\Auto_Intelligent_Wms.Core.Model.csproj" />
+  </ItemGroup>
+
+</Project>
