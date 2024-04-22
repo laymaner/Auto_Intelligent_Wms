@@ -20,17 +20,17 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
 
         private readonly Auto_Inteligent_Wms_DbContext _db;
         private readonly ILogger<LocationService> _log;
-        private readonly IAreaService _areaService;
+        private readonly IShelfService _shelfService;
 
-        public LocationService(Auto_Inteligent_Wms_DbContext db, ILogger<LocationService> logger, IAreaService areaService)
+        public LocationService(Auto_Inteligent_Wms_DbContext db, ILogger<LocationService> logger, IShelfService shelfService)
         {
             _db = db;
             _log = logger;
-            _areaService = areaService;
+            _shelfService = shelfService;
         }
 
         /// <summary>
-        /// 创建库区信息
+        /// 创建货位信息
         /// </summary>
         /// <param name="createLocationDTO"></param>
         /// <param name="currentUserId"></param>
@@ -46,14 +46,14 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
             {
                 throw new Exception("The location name parameter is empty");
             }
-            if (string.IsNullOrWhiteSpace(createLocationDTO.AreaCode))
+            if (string.IsNullOrWhiteSpace(createLocationDTO.ShelfCode))
             {
                 throw new Exception("The areacode parameter is empty");
             }
-            var area = await _areaService.GetAreaByCodeAsync(createLocationDTO.AreaCode);
-            if (area == null)
+            var shelf = await _shelfService.GetShelfByCodeAsync(createLocationDTO.ShelfCode);
+            if (shelf == null)
             {
-                throw new Exception("The AreaCode does not exist");
+                throw new Exception("The shelfcode does not exist");
             }
             if (await IsExistAsync(createLocationDTO.Code))
             {
@@ -62,8 +62,13 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
             Location location = new Location();
             location.Code = createLocationDTO.Code;
             location.Name = createLocationDTO.Name;
-            location.AreaId = area.Id;
-            location.AreaCode = createLocationDTO.AreaCode;
+            location.ShelfId = shelf.Id;
+            location.ShelfCode = createLocationDTO.ShelfCode;
+            location.ShelfName = shelf.Name;
+            location.RoadWay = createLocationDTO.RoadWay;
+            location.LRow = createLocationDTO.LRow;
+            location.LColumn = createLocationDTO.LColumn;
+            location.Layer = createLocationDTO.Layer;
             location.CreateTime = DateTime.Now;
             location.Creator = currentUserId;
             location.Remark = createLocationDTO.Remark;
@@ -74,7 +79,7 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
         }
 
         /// <summary>
-        /// 根据库位id删除库位信息
+        /// 根据货位id删除货位信息
         /// </summary>
         /// <param name="id"></param>
         /// <param name="currentUserId"></param>
@@ -91,14 +96,11 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
             {
                 throw new Exception($"No information found for location,id is {id}");
             }
-            if (await _db.MaterialStocks.AnyAsync(m => m.LocationId == id && m.Status == (int)DataStatus.Normal))
+            //todo 建立库存后加逻辑
+            /*if (await _db.MaterialStocks.AnyAsync(m => m.LocationId == id && m.Status == (int)DataStatus.Normal))
             {
                 throw new Exception("The location is in use and cannot be deleted");
-            }
-            if (await _db.Shelfs.AnyAsync(m => m.LocationId == id && m.Status == (int)DataStatus.Normal))
-            {
-                throw new Exception("The location is in use and cannot be deleted");
-            }
+            }*/
             location.Status = (int)DataStatus.Delete;
             location.UpdateTime = DateTime.Now;
             location.Updator = currentUserId;
@@ -106,17 +108,17 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
         }
 
         /// <summary>
-        /// 下载库位模板
+        /// 下载货位模板
         /// </summary>
         /// <returns></returns>
         public async Task<ActionResult<string>> DownloadTemplateAsync()
         {
             List<LocationDownloadTemplate> list = new List<LocationDownloadTemplate>();
-            return await MiniExcelUtil.ExportAsync("下载库位模板", list);
+            return await MiniExcelUtil.ExportAsync("下载货位模板", list);
         }
 
         /// <summary>
-        /// 导出库位信息
+        /// 导出货位信息
         /// </summary>
         /// <param name="locationParamsDTO"></param>
         /// <returns></returns>
@@ -132,11 +134,11 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
                 items = items.Where(m => m.Name.StartsWith(locationParamsDTO.Name));
             }
             var result = items.Adapt<List<LocationExportTemplate>>();
-            return await MiniExcelUtil.ExportAsync("库位信息", result);
+            return await MiniExcelUtil.ExportAsync("货位信息", result);
         }
 
         /// <summary>
-        /// 查询库位信息
+        /// 查询货位信息
         /// </summary>
         /// <param name="code"></param>
         /// <param name="name"></param>
@@ -156,7 +158,7 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
         }
 
         /// <summary>
-        /// 根据库区code获取库区信息
+        /// 根据货位code获取货位信息
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
@@ -176,7 +178,7 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
         }
 
         /// <summary>
-        /// 根据集合codes获取库区信息
+        /// 根据集合codes获取货位信息
         /// </summary>
         /// <param name="codes"></param>
         /// <returns></returns>
@@ -192,7 +194,7 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
         }
 
         /// <summary>
-        /// 根据库位id查询库位信息
+        /// 根据货位id查询货位信息
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -229,7 +231,7 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
         }
 
         /// <summary>
-        /// 查询库位分页信息
+        /// 查询货位分页信息
         /// </summary>
         /// <param name="locationParamsDTO"></param>
         /// <returns></returns>
@@ -261,27 +263,27 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
             {
                 throw new Exception("Import data is empty");
             }
-            //判断库位编码有没有空值
+            //判断货位编码有没有空值
             if (result.Any(m => string.IsNullOrWhiteSpace(m.Code)))
             {
                 throw new Exception("There is a null value in the imported location code");
             }
-            //判断库位名称有没有空值
+            //判断货位名称有没有空值
             if (result.Any(m => string.IsNullOrWhiteSpace(m.Name)))
             {
                 throw new Exception("There is a null value in the imported location name");
             }
-            //判断库区编码有没有空值
-            if (result.Any(m => string.IsNullOrWhiteSpace(m.AreaCode)))
+            //判断货架编码有没有空值
+            if (result.Any(m => string.IsNullOrWhiteSpace(m.ShelfCode)))
             {
-                throw new Exception("There is a null value in the imported location areaCode");
+                throw new Exception("There is a null value in the imported location ShelfCode");
             }
-            //判断库位编码是否有重复
+            //判断货位编码是否有重复
             if (result.GroupBy(m => m.Code).Any(group => group.Count() > 1))
             {
                 throw new Exception("location code duplication");
             }
-            //判断库位是否存在
+            //判断货位是否存在
             var locationCodeList = result.Select(m => m.Code).ToList();
             var locationItems = await _db.Locations.Where(m => locationCodeList.Contains(m.Code) && m.Status == (int)DataStatus.Normal).ToListAsync();
             if (locationItems != null && locationItems.Count > 0)
@@ -289,20 +291,25 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
                 throw new Exception("location code already exists");
             }
 
-            //判断库区是否存在
-            var areaCodeList = result.Select(m => m.AreaCode).Distinct().ToList();
-            var areaitems = await _db.Areas.Where(m => areaCodeList.Contains(m.Code) && m.Status == (int)DataStatus.Normal).Select(x => new { x.Id, x.Code }).ToListAsync();
-            if (areaitems == null || areaitems.Count < areaCodeList.Count)
+            //判断货架是否存在
+            var shelfCodeList = result.Select(m => m.ShelfCode).Distinct().ToList();
+            var shelfitems = await _db.Areas.Where(m => shelfCodeList.Contains(m.Code) && m.Status == (int)DataStatus.Normal).Select(x => new { x.Id, x.Code ,x.Name}).ToListAsync();
+            if (shelfitems == null || shelfitems.Count < shelfCodeList.Count)
             {
-                throw new Exception("area code does not  exists");
+                throw new Exception("shelf code does not  exists");
             }
-            var data = result.Join(areaitems, i => i.AreaCode, o => o.Code, (i, o) => new { i, o }).Select(m => new Location
+            var data = result.Join(shelfitems, i => i.ShelfCode, o => o.Code, (i, o) => new { i, o }).Select(m => new Location
             {
                 Name = m.i.Name,
                 Code = m.i.Code,
                 Status = (int)DataStatus.Normal,
-                AreaCode = m.i.AreaCode,
-                AreaId = m.o.Id,
+                ShelfId = m.o.Id,
+                ShelfCode = m.i.ShelfCode,
+                ShelfName = m.o.Name,
+                RoadWay = m.i.RoadWay,
+                LRow = m.i.LRow,
+                LColumn = m.i.LColumn,
+                Layer = m.i.Layer,
                 Creator = currentUserId,
                 Remark = m.i.Remark,
                 CreateTime = DateTime.Now,
@@ -313,7 +320,7 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
         }
 
         /// <summary>
-        /// 根据库位编码判断 该库区是否存在
+        /// 根据货位编码判断 该库区是否存在
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>

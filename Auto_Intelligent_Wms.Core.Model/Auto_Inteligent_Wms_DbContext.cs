@@ -11,8 +11,6 @@ namespace Mask_STK.Core.WebApi.Models
 
         public DbSet<User_Role_RelationShip> User_Role_RelationShips { get; set; }
 
-        public DbSet<Factory> Factorys { get; set; }
-
         public DbSet<WareHouse> WareHouses { get; set; }
 
         public DbSet<Area> Areas { get; set; }
@@ -23,25 +21,9 @@ namespace Mask_STK.Core.WebApi.Models
 
         public DbSet<Material> Materials { get; set; }
 
-        public DbSet<MaterialStock> MaterialStocks { get; set; }
-
-        public DbSet<MaterialStock_History> MaterialStock_Histories { get; set; }
-
         public DbSet<Supplier> Suppliers { get; set; }
 
         public DbSet<Material_Supplier_RelationShip> Material_Supplier_RelationShips { get; set; }
-
-        public DbSet<DeliveryOrder> DeliveryOrders { get; set; }
-
-        public DbSet<DeliveryOrder_Item> DeliveryOrder_Items { get; set; }
-
-        public DbSet<ReceiptOrder> ReceiptOrders { get; set; }
-
-        public DbSet<ReceiptOrder_Item> ReceiptOrder_Items { get; set; }
-
-        public DbSet<Label> Labels { get; set; }
-
-        public DbSet<RelocationOrder> RelocationOrders { get; set; }
 
 
 

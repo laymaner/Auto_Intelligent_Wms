@@ -31,27 +31,21 @@ namespace Auto_Intelligent_Wms.Core.Model.ImExportTemplate.WareHouse
         public string Code { get; set; }
 
         /// <summary>
-        /// 工厂编码
-        /// </summary>
-        [ExcelColumn(Name = "工厂名称", Index = 3, Width = 12)]
-        public string FactoryCode { get; set; }
-
-        /// <summary>
         /// 仓库类型
         /// </summary>
-        [ExcelColumn(Name = "仓库类型", Index = 4, Width = 12)]
+        [ExcelColumn(Name = "仓库类型", Index = 3, Width = 12)]
         public string Type { get; set; }
 
         /// <summary>
         /// 备注
         /// </summary>
-        [ExcelColumn(Name = "备注", Index = 5, Width = 40)]
+        [ExcelColumn(Name = "备注", Index = 4, Width = 40)]
         public string? Remark { get; set; }
 
         /// <summary>
         /// 创建时间
         /// </summary>
-        [ExcelColumn(Name = "创建时间", Index = 6, Width = 40, Format = "yyyy-MM-dd HH:mm:ss")]
+        [ExcelColumn(Name = "创建时间", Index = 5, Width = 40, Format = "yyyy-MM-dd HH:mm:ss")]
         public DateTime CreateTime { get; set; }
 
     }

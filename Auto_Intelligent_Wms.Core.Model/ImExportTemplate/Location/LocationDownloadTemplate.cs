@@ -27,13 +27,37 @@ namespace Auto_Intelligent_Wms.Core.Model.ImExportTemplate.Location
         /// <summary>
         /// 库区编码
         /// </summary>
-        [ExcelColumn(Name = "库区编码", Index = 2, Width = 12)]
-        public string AreaCode { get; set; }
+        [ExcelColumn(Name = "货架编码", Index = 2, Width = 12)]
+        public string ShelfCode { get; set; }
+
+        /// <summary>
+        /// 巷道
+        /// </summary>
+        [ExcelColumn(Name = "巷道", Index = 3, Width = 12)]
+        public int RoadWay { get; set; }
+
+        /// <summary>
+        /// 排
+        /// </summary>
+        [ExcelColumn(Name = "排", Index = 4, Width = 12)]
+        public int LRow { get; set; }
+
+        /// <summary>
+        /// 列
+        /// </summary>
+        [ExcelColumn(Name = "列", Index = 5, Width = 12)]
+        public int LColumn { get; set; }
+
+        /// <summary>
+        /// 层
+        /// </summary>
+        [ExcelColumn(Name = "层", Index = 6, Width = 12)]
+        public int Layer { get; set; }
 
         /// <summary>
         /// 备注
         /// </summary>
-        [ExcelColumn(Name = "备注", Index = 3, Width = 40)]
+        [ExcelColumn(Name = "备注", Index = 7, Width = 40)]
         public string? Remark { get; set; }
 
 

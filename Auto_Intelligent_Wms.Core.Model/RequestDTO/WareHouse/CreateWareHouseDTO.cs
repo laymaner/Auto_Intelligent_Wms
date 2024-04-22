@@ -22,11 +22,6 @@ namespace Auto_Intelligent_Wms.Core.Model.RequestDTO.WareHouse
         public string Code { get; set; }
 
         /// <summary>
-        /// 工厂编码
-        /// </summary>
-        public string FactoryCode { get; set; }
-
-        /// <summary>
         /// 仓库类型
         /// </summary>
         public string Type { get; set; }

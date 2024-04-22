@@ -64,6 +64,7 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
             area.Name = createAreaDTO.Name;
             area.WareHouseId = warehouse.Id;
             area.WareHouseCode = createAreaDTO.WareHouseCode;
+            area.WareHouseName = warehouse.Name;
             area.CreateTime = DateTime.Now;
             area.Creator = currentUserId;
             area.Remark = createAreaDTO.Remark;
@@ -91,11 +92,12 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
             {
                 throw new Exception($"No information found for area,id is {id}");
             }
-            if (await _db.MaterialStocks.AnyAsync(m => m.AreaId == id && m.Status == (int)DataStatus.Normal))
+            //todo 建立库存后加逻辑
+          /*  if (await _db.MaterialStocks.AnyAsync(m => m.AreaId == id && m.Status == (int)DataStatus.Normal))
             {
                 throw new Exception("The area is in use and cannot be deleted");
-            }
-            if (await _db.Locations.AnyAsync(m => m.AreaId == id && m.Status == (int)DataStatus.Normal))
+            }*/
+            if (await _db.Shelfs.AnyAsync(m => m.AreaId == id && m.Status == (int)DataStatus.Normal))
             {
                 throw new Exception("The area is in use and cannot be deleted");
             }
@@ -291,7 +293,7 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
 
             //判断仓库编码是否存在
             var wareHouseCodeList = result.Select(m => m.WareHouseCode).Distinct().ToList();
-            var wareHouseitems = await _db.WareHouses.Where(m => wareHouseCodeList.Contains(m.Code) && m.Status == (int)DataStatus.Normal).Select(x => new { x.Id, x.Code }).ToListAsync();
+            var wareHouseitems = await _db.WareHouses.Where(m => wareHouseCodeList.Contains(m.Code) && m.Status == (int)DataStatus.Normal).Select(x => new { x.Id, x.Code ,x.Name}).ToListAsync();
             if (wareHouseitems == null || wareHouseitems.Count < wareHouseCodeList.Count)
             {
                 throw new Exception("wareHouse code does not  exists");
@@ -303,6 +305,7 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
                 Status = (int)DataStatus.Normal,
                 WareHouseCode = m.i.WareHouseCode,
                 WareHouseId = m.o.Id,
+                WareHouseName = m.o.Name,
                 Creator = currentUserId,
                 Remark = m.i.Remark,
                 CreateTime = DateTime.Now,

@@ -8,7 +8,7 @@ namespace Auto_Intelligent_Wms.Core.IServices.IServices
     public interface ILocationService
     {
         /// <summary>
-        /// 查询库位信息
+        /// 查询货位信息
         /// </summary>
         /// <param name="code"></param>
         /// <param name="name"></param>
@@ -16,42 +16,42 @@ namespace Auto_Intelligent_Wms.Core.IServices.IServices
         public Task<List<Location>> GetListAsync([FromQuery] LocationParamsDTO locationParamsDTO);
 
         /// <summary>
-        /// 查询库位分页
+        /// 查询货位分页
         /// </summary>
         /// <param name="locationParamsDTO"></param>
         /// <returns></returns>
         public Task<BasePagination<Location>> GetPaginationAsync([FromQuery] LocationParamsDTO locationParamsDTO);
 
         /// <summary>
-        /// 根据id查询库位信息
+        /// 根据id查询货位信息
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         public Task<Location> GetLocationByIdAsync(long id);
 
         /// <summary>
-        /// 根据code查询库位信息
+        /// 根据code查询货位信息
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
         public Task<Location> GetLocationByCodeAsync(string code);
 
         /// <summary>
-        /// 根据ids集合获取库位数据
+        /// 根据ids集合获取货位数据
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
         public Task<List<Location>> GetLocationByIdsAsync(string ids);
 
         /// <summary>
-        /// 根据codes集合获取库位数据
+        /// 根据codes集合获取货位数据
         /// </summary>
         /// <param name="codes"></param>
         /// <returns></returns>
         public Task<List<Location>> GetLocationByCodesAsync(string codes);
 
         /// <summary>
-        /// 判断库位是否存在
+        /// 判断货位是否存在
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>

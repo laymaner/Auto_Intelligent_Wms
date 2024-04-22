@@ -20,13 +20,13 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
     {
         private readonly Auto_Inteligent_Wms_DbContext _db;
         private readonly ILogger<ShelfService> _log;
-        private readonly ILocationService _locationService;
+        private readonly IAreaService _areaService;
 
-        public ShelfService(Auto_Inteligent_Wms_DbContext db, ILogger<ShelfService> logger, ILocationService locationService)
+        public ShelfService(Auto_Inteligent_Wms_DbContext db, ILogger<ShelfService> logger, IAreaService areaService)
         {
             _db = db;
             _log = logger;
-            _locationService = locationService;
+            _areaService = areaService;
         }
 
         /// <summary>
@@ -46,14 +46,14 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
             {
                 throw new Exception("The shelf name parameter is empty");
             }
-            if (string.IsNullOrWhiteSpace(createOrUpdateFactoryDTO.LocationCode))
+            if (string.IsNullOrWhiteSpace(createOrUpdateFactoryDTO.AreaCode))
             {
-                throw new Exception("The locationcode parameter is empty");
+                throw new Exception("The AreaCode parameter is empty");
             }
-            var location = await _locationService.GetLocationByCodeAsync(createOrUpdateFactoryDTO.LocationCode);
-            if (location == null)
+            var area = await _areaService.GetAreaByCodeAsync(createOrUpdateFactoryDTO.AreaCode);
+            if (area == null)
             {
-                throw new Exception("The locationcode does not exist");
+                throw new Exception("The AreaCode does not exist");
             }
             if (await IsExistAsync(createOrUpdateFactoryDTO.Code))
             {
@@ -62,8 +62,13 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
             Shelf shelf = new Shelf();
             shelf.Code = createOrUpdateFactoryDTO.Code;
             shelf.Name = createOrUpdateFactoryDTO.Name;
-            shelf.LocationId = location.Id;
-            shelf.LocationCode = createOrUpdateFactoryDTO.LocationCode;
+            shelf.AreaId = area.Id;
+            shelf.AreaCode = createOrUpdateFactoryDTO.AreaCode;
+            shelf.AreaName = area.Name;
+            shelf.RoadWay = createOrUpdateFactoryDTO.RoadWay;
+            shelf.ShelfRows = createOrUpdateFactoryDTO.ShelfRows;
+            shelf.ShelfColumns = createOrUpdateFactoryDTO.ShelfColumns;
+            shelf.ShelfLayers = createOrUpdateFactoryDTO.ShelfLayers;
             shelf.CreateTime = DateTime.Now;
             shelf.Creator = currentUserId;
             shelf.Remark = createOrUpdateFactoryDTO.Remark;
@@ -91,10 +96,15 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
             {
                 throw new Exception($"No information found for shelf,id is {id}");
             }
-           /* if (await _db.MaterialStocks.AnyAsync(m => m.ShelfId == id && m.Status == (int)DataStatus.Normal))
+            if (await _db.Locations.AnyAsync(m => m.ShelfId == id && m.Status == (int)DataStatus.Normal))
             {
-                throw new Exception("The shelf is in use and cannot be deleted");
-            }*/
+                throw new Exception("The area is in use and cannot be deleted");
+            }
+            //todo 建立库存后加逻辑
+            /* if (await _db.MaterialStocks.AnyAsync(m => m.ShelfId == id && m.Status == (int)DataStatus.Normal))
+             {
+                 throw new Exception("The shelf is in use and cannot be deleted");
+             }*/
             shelf.Status = (int)DataStatus.Delete;
             shelf.UpdateTime = DateTime.Now;
             shelf.Updator = currentUserId;
@@ -266,10 +276,10 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
             {
                 throw new Exception("There is a null value in the imported shelf name");
             }
-            //判断库位编码有没有空值
-            if (result.Any(m => string.IsNullOrWhiteSpace(m.LocationCode)))
+            //判断库区编码有没有空值
+            if (result.Any(m => string.IsNullOrWhiteSpace(m.AreaCode)))
             {
-                throw new Exception("There is a null value in the imported shelf locationCode");
+                throw new Exception("There is a null value in the imported shelf AreaCode");
             }
             //判断货架编码是否有重复
             if (result.GroupBy(m => m.Code).Any(group => group.Count() > 1))
@@ -284,20 +294,25 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
                 throw new Exception("shelf code already exists");
             }
 
-            //判断库位是否存在
-            var locationCodeList = result.Select(m => m.LocationCode).Distinct().ToList();
-            var locationitems = await _db.Locations.Where(m => locationCodeList.Contains(m.Code) && m.Status == (int)DataStatus.Normal).Select(x => new { x.Id, x.Code }).ToListAsync();
-            if (locationitems == null || locationitems.Count < locationCodeList.Count)
+            //判断库区是否存在
+            var areaCodeList = result.Select(m => m.AreaCode).Distinct().ToList();
+            var areaitems = await _db.Locations.Where(m => areaCodeList.Contains(m.Code) && m.Status == (int)DataStatus.Normal).Select(x => new { x.Id, x.Code,x.Name }).ToListAsync();
+            if (areaitems == null || areaitems.Count < areaCodeList.Count)
             {
-                throw new Exception("location code does not  exists");
+                throw new Exception("area code does not  exists");
             }
-            var data = result.Join(locationitems, i => i.LocationCode, o => o.Code, (i, o) => new { i, o }).Select(m => new Shelf
+            var data = result.Join(areaitems, i => i.AreaCode, o => o.Code, (i, o) => new { i, o }).Select(m => new Shelf
             {
                 Name = m.i.Name,
                 Code = m.i.Code,
                 Status = (int)DataStatus.Normal,
-                LocationCode = m.i.LocationCode,
-                LocationId = m.o.Id,
+                AreaId = m.o.Id,
+                AreaCode = m.i.AreaCode,
+                AreaName = m.o.Name,
+                RoadWay = m.i.RoadWay,
+                ShelfRows = m.i.ShelfRows,
+                ShelfColumns = m.i.ShelfColumns,
+                ShelfLayers = m.i.ShelfLayers,
                 Creator = currentUserId,
                 Remark = m.i.Remark,
                 CreateTime = DateTime.Now,

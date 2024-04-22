@@ -33,19 +33,43 @@ namespace Auto_Intelligent_Wms.Core.Model.ImExportTemplate.Shelf
         /// <summary>
         /// 库位编码
         /// </summary>
-        [ExcelColumn(Name = "库位编码", Index = 3, Width = 12)]
-        public string LocationCode { get; set; }
+        [ExcelColumn(Name = "库区编码", Index = 3, Width = 12)]
+        public string AreaCode { get; set; }
+
+        /// <summary>
+        /// 巷道数量
+        /// </summary>
+        [ExcelColumn(Name = "巷道", Index = 4, Width = 12)]
+        public int RoadWay { get; set; }
+
+        /// <summary>
+        /// 总排数
+        /// </summary>
+        [ExcelColumn(Name = "排", Index = 5, Width = 12)]
+        public int ShelfRows { get; set; }
+
+        /// <summary>
+        /// 总列数
+        /// </summary>
+        [ExcelColumn(Name = "列", Index = 6, Width = 12)]
+        public int ShelfColumns { get; set; }
+
+        /// <summary>
+        /// 总层数
+        /// </summary>
+        [ExcelColumn(Name = "层", Index = 7, Width = 12)]
+        public int ShelfLayers { get; set; }
 
         /// <summary>
         /// 备注
         /// </summary>
-        [ExcelColumn(Name = "备注", Index = 4, Width = 40)]
+        [ExcelColumn(Name = "备注", Index = 8, Width = 40)]
         public string? Remark { get; set; }
 
         /// <summary>
         /// 创建时间
         /// </summary>
-        [ExcelColumn(Name = "创建时间", Index = 5, Width = 40, Format = "yyyy-MM-dd HH:mm:ss")]
+        [ExcelColumn(Name = "创建时间", Index = 9, Width = 40, Format = "yyyy-MM-dd HH:mm:ss")]
         public DateTime CreateTime { get; set; }
     }
 

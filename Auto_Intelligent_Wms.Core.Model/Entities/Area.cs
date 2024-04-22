@@ -31,6 +31,11 @@
         public string WareHouseCode { get; set; }
 
         /// <summary>
+        /// 仓库名称
+        /// </summary>
+        public string WareHouseName { get; set; }
+
+        /// <summary>
         /// 状态
         /// </summary>
         public int Status { get; set; }

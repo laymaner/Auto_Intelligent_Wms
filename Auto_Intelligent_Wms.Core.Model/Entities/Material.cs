@@ -46,21 +46,6 @@
         public decimal MinimumPackagingQuantity { get; set; }
 
         /// <summary>
-        /// 工厂id
-        /// </summary>
-        public long FactoryId { get; set; }
-
-        /// <summary>
-        /// 工厂名称
-        /// </summary>
-        public string FactoryName { get; set; }
-
-        /// <summary>
-        /// 工厂编号
-        /// </summary>
-        public string FactoryCode { get; set; }
-
-        /// <summary>
         /// 状态
         /// </summary>
         public int Status { get; set; }

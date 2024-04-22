@@ -3,9 +3,7 @@ using Auto_Intelligent_Wms.Core.Common.Utils;
 using Auto_Intelligent_Wms.Core.IServices.IServices;
 using Auto_Intelligent_Wms.Core.Model.BaseModel;
 using Auto_Intelligent_Wms.Core.Model.Entities;
-using Auto_Intelligent_Wms.Core.Model.ImExportTemplate.Factory;
 using Auto_Intelligent_Wms.Core.Model.ImExportTemplate.WareHouse;
-using Auto_Intelligent_Wms.Core.Model.RequestDTO.Factory;
 using Auto_Intelligent_Wms.Core.Model.RequestDTO.WareHouse;
 using Mapster;
 using Mask_STK.Core.WebApi.Models;
@@ -19,13 +17,11 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
     {
         private readonly Auto_Inteligent_Wms_DbContext _db;
         private readonly ILogger<WareHouseService> _log;
-        private readonly IFactoryService _factoryService;
 
-        public WareHouseService(Auto_Inteligent_Wms_DbContext db, ILogger<WareHouseService> logger, IFactoryService factoryService)
+        public WareHouseService(Auto_Inteligent_Wms_DbContext db, ILogger<WareHouseService> logger)
         {
             _db = db;
             _log = logger;
-            _factoryService = factoryService;
         }
 
         /// <summary>
@@ -48,15 +44,7 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
             {
                 throw new Exception("The warehouse name parameter is empty");
             }
-            if (string.IsNullOrWhiteSpace(createWareHouseDTO.FactoryCode))
-            {
-                throw new Exception("The FactoryCode parameter is empty");
-            }
-            var factory = await _factoryService.GetFactoryByCodeAsync(createWareHouseDTO.FactoryCode);
-            if (factory==null)
-            {
-                throw new Exception("The FactoryCode does not exist");
-            }
+
             if (await IsExistAsync(createWareHouseDTO.Code))
             {
                 throw new Exception("The warehouse already exists");
@@ -64,8 +52,6 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
             WareHouse wareHouse = new WareHouse();
             wareHouse.Code = createWareHouseDTO.Code;
             wareHouse.Name = createWareHouseDTO.Name;
-            wareHouse.FactoryId = factory.Id;
-            wareHouse.FactoryCode = createWareHouseDTO.FactoryCode;
             wareHouse.CreateTime = DateTime.Now;
             wareHouse.Creator = currentUserId;
             wareHouse.Type = createWareHouseDTO.Type;
@@ -93,10 +79,11 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
             {
                 throw new Exception($"No information found for Warehouse,id is {id}");
             }
-            if (await _db.MaterialStocks.AnyAsync(m => m.WareHouseId == id && m.Status == (int)DataStatus.Normal))
-            {
-                throw new Exception("The warehouse is in use and cannot be deleted");
-            }
+            //todo 建立库存后加逻辑
+            /*  if (await _db.MaterialStocks.AnyAsync(m => m.WareHouseId == id && m.Status == (int)DataStatus.Normal))
+              {
+                  throw new Exception("The warehouse is in use and cannot be deleted");
+              }*/
             if (await _db.Areas.AnyAsync(m => m.WareHouseId == id && m.Status == (int)DataStatus.Normal))
             {
                 throw new Exception("The warehouse is in use and cannot be deleted");
@@ -290,11 +277,6 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
             {
                 throw new Exception("There is a null value in the imported warehouse type");
             }
-            //判断工厂编码有没有空值
-            if (result.Any(m => string.IsNullOrWhiteSpace(m.FactoryCode)))
-            {
-                throw new Exception("There is a null value in the imported warehouse FactoryCode");
-            }
             //判断仓库编码是否有重复
             if (result.GroupBy(m => m.Code).Any(group => group.Count() > 1))
             {
@@ -308,23 +290,14 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
                 throw new Exception("warehouse code already exists");
             }
 
-            //判断工厂编码是否存在
-            var factoryCodeList = result.Select(m => m.FactoryCode).Distinct().ToList();
-            var factoryitems = await _db.Factorys.Where(m => factoryCodeList.Contains(m.Code) && m.Status == (int)DataStatus.Normal).Select(x => new { x.Id,x.Code}).ToListAsync();
-            if (factoryitems == null || factoryitems.Count < factoryCodeList.Count)
+            var data = result.Select(m => new WareHouse 
             {
-                throw new Exception("factory code does not  exists");
-            }
-            var data = result.Join(factoryitems, i => i.FactoryCode, o => o.Code, (i, o) => new { i,o}).Select(m => new WareHouse 
-            {
-                Name = m.i.Name,
-                Code = m.i.Code,
-                Type = m.i.Type,
+                Name = m.Name,
+                Code = m.Code,
+                Type = m.Type,
                 Status = (int)DataStatus.Normal,
-                FactoryCode = m.i.FactoryCode,
-                FactoryId = m.o.Id,
                 Creator = currentUserId,
-                Remark = m.i.Remark,
+                Remark = m.Remark,
                 CreateTime = DateTime.Now,
 
             });

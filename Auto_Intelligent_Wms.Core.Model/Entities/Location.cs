@@ -1,7 +1,7 @@
 ﻿   namespace Auto_Intelligent_Wms.Core.Model.Entities
 {
     /// <summary>
-    /// 库位
+    /// 货位
     /// </summary>
     public class Location
     {
@@ -11,24 +11,49 @@
         public long Id { get; set; }
 
         /// <summary>
-        /// 库位名称
+        /// 货位名称
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// 库位编码
+        /// 货位编码
         /// </summary>
         public string Code { get; set; }
 
         /// <summary>
-        /// 库区id
+        /// 货架id
         /// </summary>
-        public long AreaId { get; set; }
+        public long ShelfId { get; set; }
 
         /// <summary>
-        /// 库区编码
+        /// 货架编码
         /// </summary>
-        public string AreaCode { get; set; }
+        public string ShelfCode { get; set; }
+
+        /// <summary>
+        /// 货架名称
+        /// </summary>
+        public string ShelfName { get; set; }
+
+        /// <summary>
+        /// 巷道
+        /// </summary>
+        public int RoadWay { get; set; }
+
+        /// <summary>
+        /// 排
+        /// </summary>
+        public int LRow { get; set; }
+
+        /// <summary>
+        /// 列
+        /// </summary>
+        public int LColumn { get; set; }
+
+        /// <summary>
+        /// 层
+        /// </summary>
+        public int Layer { get; set; }
 
         /// <summary>
         /// 状态

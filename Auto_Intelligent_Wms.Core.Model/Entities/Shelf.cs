@@ -21,14 +21,39 @@
         public string Code { get; set; }
 
         /// <summary>
-        /// 库位id
+        /// 库区id
         /// </summary>
-        public long LocationId { get; set; }
+        public long AreaId { get; set; }
 
         /// <summary>
-        /// 库位编码
+        /// 库区编码
         /// </summary>
-        public string LocationCode { get; set; }
+        public string AreaCode { get; set; }
+
+        /// <summary>
+        /// 库区名称
+        /// </summary>
+        public string AreaName { get; set; }
+
+        /// <summary>
+        /// 巷道数量
+        /// </summary>
+        public int RoadWay { get; set; }
+
+        /// <summary>
+        /// 排数
+        /// </summary>
+        public int ShelfRows { get; set; }
+
+        /// <summary>
+        /// 列数
+        /// </summary>
+        public int ShelfColumns { get; set; }
+
+        /// <summary>
+        /// 层数
+        /// </summary>
+        public int ShelfLayers { get; set; }
 
         /// <summary>
         /// 状态

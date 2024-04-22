@@ -11,7 +11,7 @@ using System.Security.Claims;
 namespace Mask_STK.Controllers
 {
     /// <summary>
-    /// 库位
+    /// 货位
     /// </summary>
     [Route("api/[controller]/[action]")]
     [ApiController]

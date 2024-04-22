@@ -14,6 +14,7 @@ namespace Auto_Intelligent_Wms.Core.Model.Config
             builder.Property(m => m.Code).HasMaxLength(20).HasComment("库区编码").IsRequired();
             builder.Property(m => m.WareHouseId).HasComment("仓库id").IsRequired();
             builder.Property(m => m.WareHouseCode).HasMaxLength(20).HasComment("仓库编码").IsRequired();
+            builder.Property(m => m.WareHouseName).HasMaxLength(20).HasComment("仓库名称").IsRequired();
             builder.Property(m => m.Status).HasMaxLength(2).HasComment("状态 1：正常 2：删除").HasDefaultValue(1).IsRequired();
             builder.Property(m => m.Remark).HasComment("备注");
             builder.Property(m => m.Creator).HasComment("创建人").IsRequired();
