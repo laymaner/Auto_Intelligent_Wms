@@ -86,6 +86,11 @@
         public string? Remark { get; set; }
 
         /// <summary>
+        /// 物料等级
+        /// </summary>
+        public string? Version { get; set; }
+
+        /// <summary>
         /// 创建时间
         /// </summary>
         public DateTime CreateTime { get; set; }

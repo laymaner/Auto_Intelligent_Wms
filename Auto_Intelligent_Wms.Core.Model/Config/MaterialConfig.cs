@@ -25,6 +25,7 @@ namespace Auto_Intelligent_Wms.Core.Model.Config
             builder.Property(m => m.Quantity).HasComment("基本计量单位数量").IsRequired();
             builder.Property(m => m.Status).HasMaxLength(2).HasComment("状态 1：正常 2：删除").HasDefaultValue(1).IsRequired();
             builder.Property(m => m.Remark).HasComment("备注");
+            builder.Property(m => m.Version).HasMaxLength(5).HasComment("物料等级").IsRequired();
             builder.Property(m => m.Creator).HasComment("创建人").IsRequired();
             builder.Property(m => m.CreateTime).HasComment("创建时间").IsRequired();
             builder.Property(m => m.Updator).HasComment("更新人");
