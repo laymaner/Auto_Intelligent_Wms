@@ -29,7 +29,7 @@ namespace Auto_Intelligent_Wms.Core.Model.Entities
         /// <summary>
         /// 类型 ：1、料箱
         /// </summary>
-        public string Type { get; set; }
+        public int Type { get; set; }
 
         /// <summary>
         /// 所属单位
@@ -54,7 +54,7 @@ namespace Auto_Intelligent_Wms.Core.Model.Entities
         /// <summary>
         /// 存储状态 不在货位/在货位/任务中
         /// </summary>
-        public int StorageStatus { get; set; }
+        public int? StorageStatus { get; set; }
 
         /// <summary>
         /// 状态

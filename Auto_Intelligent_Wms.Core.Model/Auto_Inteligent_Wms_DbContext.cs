@@ -25,6 +25,26 @@ namespace Mask_STK.Core.WebApi.Models
 
         public DbSet<Material_Supplier_RelationShip> Material_Supplier_RelationShips { get; set; }
 
+        public DbSet<Castle> Castles { get; set; }
+
+        public DbSet<ExpOrder> ExpOrders { get; set; }
+
+        public DbSet<ExpOrder_Items> ExpOrder_Items { get; set; }
+
+        public DbSet<ImpOrder>  ImpOrders { get; set; }
+
+        public DbSet<ImpOrder_Items> ImpOrder_Items { get; set; }
+
+        public DbSet<StockInventory> StockInventories { get; set; }
+
+        public DbSet<StockInventory_History> StockInventory_Histories { get; set; }
+
+        public DbSet<Operate_Log> Operate_Logs { get; set; }
+
+        public DbSet<PassageWay> PassageWays { get; set; }
+
+
+
 
 
         public Auto_Inteligent_Wms_DbContext(DbContextOptions<Auto_Inteligent_Wms_DbContext> options) : base(options)

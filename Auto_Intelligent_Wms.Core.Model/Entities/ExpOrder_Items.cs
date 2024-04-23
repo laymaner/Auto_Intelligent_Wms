@@ -17,7 +17,7 @@ namespace Auto_Intelligent_Wms.Core.Model.Entities
         public long Id { get; set; }
 
         /// <summary>
-        /// 入库单id
+        /// 出库单id
         /// </summary>
         public long ExpOrderId { get; set; }
 
@@ -57,19 +57,19 @@ namespace Auto_Intelligent_Wms.Core.Model.Entities
         public string BatchNo { get; set; }
 
         /// <summary>
-        /// 出库口
+        /// 出库口编码
         /// </summary>
         public string PassageWayCode { get; set; }
 
         /// <summary>
         /// 计划出库货物数量
         /// </summary>
-        public decimal PlanImpQuantity { get; set; }
+        public decimal PlanExpQuantity { get; set; }
 
         /// <summary>
         /// 实际出库货物数量
         /// </summary>
-        public decimal ActualImpQuantity { get; set; }
+        public decimal ActualExpQuantity { get; set; }
 
         /// <summary>
         /// 状态

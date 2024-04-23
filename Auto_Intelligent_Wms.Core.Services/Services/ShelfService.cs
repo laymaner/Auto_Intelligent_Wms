@@ -100,11 +100,10 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
             {
                 throw new Exception("The area is in use and cannot be deleted");
             }
-            //todo 建立库存后加逻辑
-            /* if (await _db.MaterialStocks.AnyAsync(m => m.ShelfId == id && m.Status == (int)DataStatus.Normal))
-             {
-                 throw new Exception("The shelf is in use and cannot be deleted");
-             }*/
+            if (await _db.StockInventories.AnyAsync(m => m.ShelfCode.Equals(shelf.Code) && m.Status == (int)DataStatus.Normal))
+            {
+                throw new Exception("The shelf is in use and cannot be deleted");
+            }
             shelf.Status = (int)DataStatus.Delete;
             shelf.UpdateTime = DateTime.Now;
             shelf.Updator = currentUserId;

@@ -92,11 +92,10 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
             {
                 throw new Exception($"No information found for area,id is {id}");
             }
-            //todo 建立库存后加逻辑
-          /*  if (await _db.MaterialStocks.AnyAsync(m => m.AreaId == id && m.Status == (int)DataStatus.Normal))
+            if (await _db.StockInventories.AnyAsync(m => m.AreaCode.Equals(area.Code) && m.Status == (int)DataStatus.Normal))
             {
                 throw new Exception("The area is in use and cannot be deleted");
-            }*/
+            }
             if (await _db.Shelfs.AnyAsync(m => m.AreaId == id && m.Status == (int)DataStatus.Normal))
             {
                 throw new Exception("The area is in use and cannot be deleted");

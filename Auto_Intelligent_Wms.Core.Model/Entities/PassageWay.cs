@@ -66,6 +66,12 @@ namespace Auto_Intelligent_Wms.Core.Model.Entities
         /// </summary>
         public string? ForthLanway { get; set; }
 
+
+        /// <summary>
+        /// 状态
+        /// </summary>
+        public int Status { get; set; }
+
         /// <summary>
         /// 备注
         /// </summary>

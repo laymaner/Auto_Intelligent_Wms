@@ -51,7 +51,7 @@ namespace Auto_Intelligent_Wms.Core.Model.Entities
         /// <summary>
         /// Castle类型
         /// </summary>
-        public string CastleType { get; set; }
+        public int CastleType { get; set; }
 
         /// <summary>
         /// 供应商编码
@@ -76,7 +76,7 @@ namespace Auto_Intelligent_Wms.Core.Model.Entities
         /// <summary>
         /// 每个/价格
         /// </summary>
-        public string Price { get; set; }
+        public decimal Price { get; set; }
 
         /// <summary>
         /// 价格单位
@@ -91,22 +91,22 @@ namespace Auto_Intelligent_Wms.Core.Model.Entities
         /// <summary>
         /// 是否锁定 N/Y
         /// </summary>
-        public string IsLock { get; set; }
+        public string? IsLock { get; set; }
 
         /// <summary>
         /// 是否占用 N/Y
         /// </summary>
-        public string IsOccupy { get; set; }
+        public string? IsOccupy { get; set; }
 
         /// <summary>
         /// 是否报废 N/Y
         /// </summary>
-        public string IsScrap { get; set; }
+        public string? IsScrap { get; set; }
 
         /// <summary>
         /// 是否冻结 N/Y
         /// </summary>
-        public string IsFreeze { get; set; }
+        public string? IsFreeze { get; set; }
 
         /// <summary>
         /// 批次

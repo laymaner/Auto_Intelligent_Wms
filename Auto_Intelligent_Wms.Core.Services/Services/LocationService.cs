@@ -96,11 +96,10 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
             {
                 throw new Exception($"No information found for location,id is {id}");
             }
-            //todo 建立库存后加逻辑
-            /*if (await _db.MaterialStocks.AnyAsync(m => m.LocationId == id && m.Status == (int)DataStatus.Normal))
+            if (await _db.StockInventories.AnyAsync(m => m.LocationCode.Equals(location.Code) && m.Status == (int)DataStatus.Normal))
             {
                 throw new Exception("The location is in use and cannot be deleted");
-            }*/
+            }
             location.Status = (int)DataStatus.Delete;
             location.UpdateTime = DateTime.Now;
             location.Updator = currentUserId;

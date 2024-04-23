@@ -79,11 +79,10 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
             {
                 throw new Exception($"No information found for Warehouse,id is {id}");
             }
-            //todo 建立库存后加逻辑
-            /*  if (await _db.MaterialStocks.AnyAsync(m => m.WareHouseId == id && m.Status == (int)DataStatus.Normal))
-              {
-                  throw new Exception("The warehouse is in use and cannot be deleted");
-              }*/
+            if (await _db.StockInventories.AnyAsync(m => m.WareHouseCode.Equals(wareHouse.Code) && m.Status == (int)DataStatus.Normal))
+            {
+                throw new Exception("The warehouse is in use and cannot be deleted");
+            }
             if (await _db.Areas.AnyAsync(m => m.WareHouseId == id && m.Status == (int)DataStatus.Normal))
             {
                 throw new Exception("The warehouse is in use and cannot be deleted");

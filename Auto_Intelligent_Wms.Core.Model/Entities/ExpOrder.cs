@@ -39,7 +39,7 @@ namespace Auto_Intelligent_Wms.Core.Model.Entities
         /// <summary>
         /// 出库时间
         /// </summary>
-        public DateTime? ImpTime { get; set; }
+        public DateTime? ExpTime { get; set; }
 
         /// <summary>
         /// 出库步骤
