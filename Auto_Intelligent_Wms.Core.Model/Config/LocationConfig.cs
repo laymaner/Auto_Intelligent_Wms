@@ -19,6 +19,8 @@ namespace Auto_Intelligent_Wms.Core.Model.Config
             builder.Property(m => m.LRow).HasComment("排").IsRequired();
             builder.Property(m => m.LColumn).HasComment("列").IsRequired();
             builder.Property(m => m.Layer).HasComment("层").IsRequired();
+            builder.Property(m => m.ImpLock).HasComment("入库锁定标识 0：未锁定 1：已锁定").HasDefaultValue(0).IsRequired();
+            builder.Property(m => m.ExpLock).HasComment(" 出库锁定标识 0：未锁定 1：已锁定").HasDefaultValue(0).IsRequired();
             builder.Property(m => m.Status).HasMaxLength(2).HasComment("状态 1：正常 2：删除").HasDefaultValue(1).IsRequired();
             builder.Property(m => m.Remark).HasComment("备注");
             builder.Property(m => m.Creator).HasComment("创建人").IsRequired();

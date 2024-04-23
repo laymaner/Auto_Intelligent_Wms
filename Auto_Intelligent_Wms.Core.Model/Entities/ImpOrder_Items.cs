@@ -1,9 +1,15 @@
-﻿   namespace Auto_Intelligent_Wms.Core.Model.Entities
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Auto_Intelligent_Wms.Core.Model.Entities
 {
     /// <summary>
-    /// 货位
+    /// 入库单明细
     /// </summary>
-    public class Location
+    public class ImpOrder_Items
     {
         /// <summary>
         /// 主键id
@@ -11,59 +17,59 @@
         public long Id { get; set; }
 
         /// <summary>
-        /// 货位名称
+        /// 入库单id
         /// </summary>
-        public string Name { get; set; }
+        public long ImpOrderId { get; set; }
 
         /// <summary>
-        /// 货位编码
+        /// Castle编码
         /// </summary>
-        public string Code { get; set; }
+        public string CastleCode { get; set; }
 
         /// <summary>
-        /// 货架id
+        /// Castle类型
         /// </summary>
-        public long ShelfId { get; set; }
+        public string CastleType { get; set; }
 
         /// <summary>
-        /// 货架编码
+        /// 仓储库区位置
+        /// </summary>
+        public string AreaCode { get; set; }
+
+        /// <summary>
+        /// 仓储货架位置
         /// </summary>
         public string ShelfCode { get; set; }
 
         /// <summary>
-        /// 货架名称
+        /// 仓储货位位置
         /// </summary>
-        public string ShelfName { get; set; }
+        public string LocationCode { get; set; }
 
         /// <summary>
-        /// 巷道
+        /// 物料编码
         /// </summary>
-        public int RoadWay { get; set; }
+        public string MaterialCode { get; set; }
 
         /// <summary>
-        /// 排
+        /// 批次号
         /// </summary>
-        public int LRow { get; set; }
+        public string BatchNo { get; set; }
 
         /// <summary>
-        /// 列
+        /// 入库口
         /// </summary>
-        public int LColumn { get; set; }
+        public string PassageWayCode { get; set; }
 
         /// <summary>
-        /// 层
+        /// 计划入库货物数量
         /// </summary>
-        public int Layer { get; set; }
+        public decimal PlanImpQuantity { get; set; }
 
         /// <summary>
-        /// 入库锁定标识 0：未锁定 1：已锁定
+        /// 实际入库货物数量
         /// </summary>
-        public int ImpLock { get; set; }
-
-        /// <summary>
-        /// 出库锁定标识 0：未锁定 1：已锁定
-        /// </summary>
-        public int ExpLock { get; set; }
+        public decimal ActualImpQuantity { get; set; }
 
         /// <summary>
         /// 状态
@@ -95,5 +101,6 @@
         /// 更新人
         /// </summary>
         public long? Updator { get; set; }
+
     }
 }

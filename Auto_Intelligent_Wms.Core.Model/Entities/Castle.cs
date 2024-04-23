@@ -1,9 +1,15 @@
-﻿   namespace Auto_Intelligent_Wms.Core.Model.Entities
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Auto_Intelligent_Wms.Core.Model.Entities
 {
     /// <summary>
-    /// 货位
+    /// 货物装载容器
     /// </summary>
-    public class Location
+    public class Castle
     {
         /// <summary>
         /// 主键id
@@ -11,64 +17,54 @@
         public long Id { get; set; }
 
         /// <summary>
-        /// 货位名称
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// 货位编码
+        /// 编码
         /// </summary>
         public string Code { get; set; }
 
         /// <summary>
-        /// 货架id
+        /// 名称
         /// </summary>
-        public long ShelfId { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
-        /// 货架编码
+        /// 类型 ：1、料箱
         /// </summary>
-        public string ShelfCode { get; set; }
+        public string Type { get; set; }
 
         /// <summary>
-        /// 货架名称
+        /// 所属单位
         /// </summary>
-        public string ShelfName { get; set; }
+        public string? AffiliatedUnit { get; set; }
 
         /// <summary>
-        /// 巷道
+        /// 存储货位id
         /// </summary>
-        public int RoadWay { get; set; }
+        public long? LocationId { get; set; }
 
         /// <summary>
-        /// 排
+        /// 存储货位名称
         /// </summary>
-        public int LRow { get; set; }
+        public string? LocationName { get; set; }
 
         /// <summary>
-        /// 列
+        /// 存储货位编码
         /// </summary>
-        public int LColumn { get; set; }
+        public string? LocationCode { get; set; }
 
         /// <summary>
-        /// 层
+        /// 存储状态 不在货位/在货位/任务中
         /// </summary>
-        public int Layer { get; set; }
-
-        /// <summary>
-        /// 入库锁定标识 0：未锁定 1：已锁定
-        /// </summary>
-        public int ImpLock { get; set; }
-
-        /// <summary>
-        /// 出库锁定标识 0：未锁定 1：已锁定
-        /// </summary>
-        public int ExpLock { get; set; }
+        public int StorageStatus { get; set; }
 
         /// <summary>
         /// 状态
         /// </summary>
         public int Status { get; set; }
+
+        /// <summary>
+        /// 是否有货 Y/N
+        /// </summary>
+        public string? HasGoods { get; set; }
 
         /// <summary>
         /// 备注

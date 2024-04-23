@@ -1,9 +1,15 @@
-﻿   namespace Auto_Intelligent_Wms.Core.Model.Entities
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Auto_Intelligent_Wms.Core.Model.Entities
 {
     /// <summary>
-    /// 货位
+    /// 操作日志
     /// </summary>
-    public class Location
+    public class Operate_Log
     {
         /// <summary>
         /// 主键id
@@ -11,59 +17,54 @@
         public long Id { get; set; }
 
         /// <summary>
-        /// 货位名称
+        /// 用户编码
         /// </summary>
-        public string Name { get; set; }
+        public string UserCode { get; set; }
 
         /// <summary>
-        /// 货位编码
+        /// 用户名称
         /// </summary>
-        public string Code { get; set; }
+        public string UserName { get; set; }
 
         /// <summary>
-        /// 货架id
+        /// ip地址
         /// </summary>
-        public long ShelfId { get; set; }
+        public string IpAddress { get; set; }
 
         /// <summary>
-        /// 货架编码
+        /// 标题
         /// </summary>
-        public string ShelfCode { get; set; }
+        public string? Title { get; set; }
 
         /// <summary>
-        /// 货架名称
+        /// 方法名称
         /// </summary>
-        public string ShelfName { get; set; }
+        public string Method { get; set; }
 
         /// <summary>
-        /// 巷道
+        /// 操作类型
         /// </summary>
-        public int RoadWay { get; set; }
+        public string OperateType { get; set; }
 
         /// <summary>
-        /// 排
+        /// 操作路径
         /// </summary>
-        public int LRow { get; set; }
+        public string OperateUrl { get; set; }
 
         /// <summary>
-        /// 列
+        /// 参数
         /// </summary>
-        public int LColumn { get; set; }
+        public string? OperateParams { get; set; }
 
         /// <summary>
-        /// 层
+        /// 操作状态
         /// </summary>
-        public int Layer { get; set; }
+        public int OperateStatus { get; set; }
 
         /// <summary>
-        /// 入库锁定标识 0：未锁定 1：已锁定
+        /// 错误消息
         /// </summary>
-        public int ImpLock { get; set; }
-
-        /// <summary>
-        /// 出库锁定标识 0：未锁定 1：已锁定
-        /// </summary>
-        public int ExpLock { get; set; }
+        public string? ErrorMsg { get; set; }
 
         /// <summary>
         /// 状态
@@ -95,5 +96,11 @@
         /// 更新人
         /// </summary>
         public long? Updator { get; set; }
+
+
+
+
+
+
     }
 }

@@ -1,9 +1,15 @@
-﻿   namespace Auto_Intelligent_Wms.Core.Model.Entities
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Auto_Intelligent_Wms.Core.Model.Entities
 {
     /// <summary>
-    /// 货位
+    /// 通道
     /// </summary>
-    public class Location
+    public class PassageWay
     {
         /// <summary>
         /// 主键id
@@ -11,70 +17,59 @@
         public long Id { get; set; }
 
         /// <summary>
-        /// 货位名称
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// 货位编码
+        /// 编码
         /// </summary>
         public string Code { get; set; }
 
         /// <summary>
-        /// 货架id
+        /// 名称
         /// </summary>
-        public long ShelfId { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
-        /// 货架编码
+        /// 通道类型 1：入库口 2：出库口
         /// </summary>
-        public string ShelfCode { get; set; }
+        public int Type { get; set; }
 
         /// <summary>
-        /// 货架名称
+        /// 仓库id
         /// </summary>
-        public string ShelfName { get; set; }
+        public long WareHouseId { get; set; }
 
         /// <summary>
-        /// 巷道
+        /// 仓库名称
         /// </summary>
-        public int RoadWay { get; set; }
+        public string WareHouseName { get; set; }
 
         /// <summary>
-        /// 排
+        /// 仓库编码
         /// </summary>
-        public int LRow { get; set; }
+        public string WareHouseCode { get; set; }   
 
         /// <summary>
-        /// 列
+        /// 一号巷道
         /// </summary>
-        public int LColumn { get; set; }
+        public string? FirstLanway { get; set; }
 
         /// <summary>
-        /// 层
+        /// 二号巷道
         /// </summary>
-        public int Layer { get; set; }
+        public string? SecondLanway { get; set; }
 
         /// <summary>
-        /// 入库锁定标识 0：未锁定 1：已锁定
+        /// 三号巷道
         /// </summary>
-        public int ImpLock { get; set; }
+        public string? ThirdtLanway { get; set; }
 
         /// <summary>
-        /// 出库锁定标识 0：未锁定 1：已锁定
+        /// 四号巷道
         /// </summary>
-        public int ExpLock { get; set; }
-
-        /// <summary>
-        /// 状态
-        /// </summary>
-        public int Status { get; set; }
+        public string? ForthLanway { get; set; }
 
         /// <summary>
         /// 备注
         /// </summary>
         public string? Remark { get; set; }
-
 
         /// <summary>
         /// 创建时间
@@ -95,5 +90,9 @@
         /// 更新人
         /// </summary>
         public long? Updator { get; set; }
+
+
+
+
     }
 }

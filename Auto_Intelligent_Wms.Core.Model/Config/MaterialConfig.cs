@@ -14,9 +14,6 @@ namespace Auto_Intelligent_Wms.Core.Model.Config
             builder.Property(m => m.Code).HasMaxLength(20).HasComment("物料编码").IsRequired();
             builder.Property(m => m.Type).HasMaxLength(5).HasComment("物料类型").IsRequired();
             builder.Property(m => m.Description).HasComment("物料描述");
-            builder.Property(m => m.FactoryId).HasComment("工厂id").IsRequired();
-            builder.Property(m => m.FactoryName).HasMaxLength(20).HasComment("工厂名称").IsRequired();
-            builder.Property(m => m.FactoryCode).HasMaxLength(20).HasComment("工厂编码").IsRequired();
             builder.Property(m => m.Unit).HasMaxLength(20).HasComment("基本单位").IsRequired();
             builder.Property(m => m.PriceUint).HasMaxLength(20).HasComment("价格单位").IsRequired();
             builder.Property(m => m.Price).HasComment(" 每个/价格").IsRequired();
