@@ -1,70 +1,75 @@
 ﻿using Auto_Intelligent_Wms.Core.Model.BaseModel;
 using Auto_Intelligent_Wms.Core.Model.Entities;
-using Auto_Intelligent_Wms.Core.Model.RequestDTO.WareHouse;
+using Auto_Intelligent_Wms.Core.Model.RequestDTO.Material;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Auto_Intelligent_Wms.Core.IServices.IServices
 {
-    public interface IWareHouseService
+    public interface IMaterialService
     {
         /// <summary>
-        /// 查询仓库信息
+        /// 查询物料信息
         /// </summary>
-        /// <param name="wareHouseParamsDTO"></param>
+        /// <param name="materialParamsDTO"></param>
         /// <returns></returns>
-        public Task<List<WareHouse>> GetListAsync([FromQuery] WareHouseParamsDTO wareHouseParamsDTO);
+        public Task<List<Material>> GetListAsync([FromQuery] MaterialParamsDTO materialParamsDTO);
 
         /// <summary>
-        /// 查询仓库分页
+        /// 查询物料信息分页
         /// </summary>
-        /// <param name="wareHouseParamsDTO"></param>
+        /// <param name="materialParamsDTO"></param>
         /// <returns></returns>
-        public Task<BasePagination<WareHouse>> GetPaginationAsync([FromQuery] WareHouseParamsDTO wareHouseParamsDTO);
+        public Task<BasePagination<Material>> GetPaginationAsync([FromQuery] MaterialParamsDTO materialParamsDTO);
 
         /// <summary>
-        /// 根据id查询仓库信息
+        /// 根据id查询物料信息
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Task<WareHouse> GetWareHouseByIdAsync(long id);
+        public Task<Material> GetMaterialByIdAsync(long id);
 
         /// <summary>
-        /// 根据code查询仓库信息
+        /// 根据code查询物料信息
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
-        public Task<WareHouse> GetWareHouseByCodeAsync(string code);
+        public Task<Material> GetMaterialByCodeAsync(string code);
 
         /// <summary>
-        /// 根据ids集合获取仓库数据
+        /// 根据ids集合获取物料信息
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
-        public Task<List<WareHouse>> GetWareHouseByIdsAsync(string ids);
+        public Task<List<Material>> GetMaterialByIdsAsync(string ids);
 
         /// <summary>
-        /// 根据codes集合获取仓库数据
+        /// 根据codes集合获取物料信息
         /// </summary>
         /// <param name="codes"></param>
         /// <returns></returns>
-        public Task<List<WareHouse>> GetWareHouseByCodesAsync(string codes);
+        public Task<List<Material>> GetMaterialByCodesAsync(string codes);
 
         /// <summary>
-        /// 判断仓库是否存在
+        /// 判断物料信息是否存在
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
         public Task<bool> IsExistAsync(string code);
 
         /// <summary>
-        /// 创建仓库
+        /// 创建物料信息
         /// </summary>
-        /// <param name="createWareHouseDTO"></param>
+        /// <param name="createMaterialDTO"></param>
         /// <returns></returns>
-        public Task<long> CreateAsync([FromBody] CreateWareHouseDTO createWareHouseDTO, long currentUserId);
+        public Task<long> CreateAsync([FromBody] CreateMaterialDTO createMaterialDTO, long currentUserId);
 
         /// <summary>
-        /// 根据id删除仓库信息
+        /// 根据id删除物料信息
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -79,9 +84,9 @@ namespace Auto_Intelligent_Wms.Core.IServices.IServices
         /// <summary>
         /// 导出
         /// </summary>
-        /// <param name="wareHouseParamsDTO"></param>
+        /// <param name="materialParamsDTO"></param>
         /// <returns></returns>
-        public Task<ActionResult<string>> ExportAsync([FromQuery] WareHouseParamsDTO wareHouseParamsDTO);
+        public Task<ActionResult<string>> ExportAsync([FromQuery] MaterialParamsDTO materialParamsDTO);
 
         /// <summary>
         /// 导入
