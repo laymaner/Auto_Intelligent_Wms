@@ -58,14 +58,14 @@ namespace Auto_Intelligent_Wms.Core.IServices.IServices
         public Task<bool> IsExistAsync(string code);
 
         /// <summary>
-        /// 创建库区
+        /// 创建货位
         /// </summary>
         /// <param name="createLocationDTO"></param>
         /// <returns></returns>
         public Task<long> CreateAsync([FromBody] CreateLocationDTO createLocationDTO, long currentUserId);
 
         /// <summary>
-        /// 根据id删除库区信息
+        /// 根据id删除货位信息
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

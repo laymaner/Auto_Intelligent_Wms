@@ -213,7 +213,7 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
         }
 
         /// <summary>
-        /// 根据集合ids查询库区信息
+        /// 根据集合ids查询货位信息
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
@@ -319,7 +319,7 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
         }
 
         /// <summary>
-        /// 根据货位编码判断 该库区是否存在
+        /// 根据货位编码判断 该货位是否存在
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>

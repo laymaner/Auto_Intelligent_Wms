@@ -26,14 +26,14 @@ namespace Auto_Intelligent_Wms.Core.IServices.IServices
         /// </summary>
         /// <param name="materialSupplierRelationShipParamsDTO"></param>
         /// <returns></returns>
-        public Task<List<IMaterial_Supplier_RelationShipService>> GetListAsync([FromQuery] MaterialSupplierRelationShipParamsDTO materialSupplierRelationShipParamsDTO);
+        public Task<List<Material_Supplier_RelationShip>> GetListAsync([FromQuery] MaterialSupplierRelationShipParamsDTO materialSupplierRelationShipParamsDTO);
 
         /// <summary>
         /// 分页查询物料供应商关系信息
         /// </summary>
         /// <param name="materialSupplierRelationShipParamsDTO"></param>
         /// <returns></returns>
-        public Task<BasePagination<IMaterial_Supplier_RelationShipService>> GetPaginationAsync([FromQuery] MaterialSupplierRelationShipParamsDTO materialSupplierRelationShipParamsDTO);
+        public Task<BasePagination<Material_Supplier_RelationShip>> GetPaginationAsync([FromQuery] MaterialSupplierRelationShipParamsDTO materialSupplierRelationShipParamsDTO);
 
         /// <summary>
         /// 删除用户角色关系

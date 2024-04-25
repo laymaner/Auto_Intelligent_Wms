@@ -26,7 +26,7 @@ namespace Mask_STK.Controllers
         }
 
         /// <summary>
-        /// 查询库位信息
+        /// 查询货位信息
         /// </summary>
         /// <param name="locationParamsDTO"></param>
         /// <returns></returns>
@@ -38,7 +38,7 @@ namespace Mask_STK.Controllers
         }
 
         /// <summary>
-        /// 查询库位分页
+        /// 查询货位分页
         /// </summary>
         /// <param name="locationParamsDTO"></param>
         /// <returns></returns>
@@ -50,7 +50,7 @@ namespace Mask_STK.Controllers
         }
 
         /// <summary>
-        /// 根据id查询库位信息
+        /// 根据id查询货位信息
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -62,7 +62,7 @@ namespace Mask_STK.Controllers
         }
 
         /// <summary>
-        /// 根据ids集合获取库位数据
+        /// 根据ids集合获取货位数据
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
@@ -74,7 +74,7 @@ namespace Mask_STK.Controllers
         }
 
         /// <summary>
-        /// 根据codes集合获取库位数据
+        /// 根据codes集合获取货位数据
         /// </summary>
         /// <param name="codes"></param>
         /// <returns></returns>
@@ -86,7 +86,7 @@ namespace Mask_STK.Controllers
         }
 
         /// <summary>
-        /// 根据code查库位信息
+        /// 根据code查货位信息
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
@@ -98,7 +98,7 @@ namespace Mask_STK.Controllers
         }
 
         /// <summary>
-        /// 判断库位是否存在
+        /// 判断货位是否存在
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
@@ -110,7 +110,7 @@ namespace Mask_STK.Controllers
         }
 
         /// <summary>
-        /// 创建库位
+        /// 创建货位
         /// </summary>
         /// <param name="createLocationDTO"></param>
         /// <returns></returns>
@@ -122,7 +122,7 @@ namespace Mask_STK.Controllers
         }
 
         /// <summary>
-        /// 根据id删除库位信息
+        /// 根据id删除货位信息
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
