@@ -91,6 +91,7 @@ builder.Services.Configure<MvcOptions>(opt =>
     //opt.Filters.Add<NotLoginFilter>();
     opt.Filters.Add<TransationScopeFilter>();
     opt.Filters.Add<RateLimitFilter>();
+    opt.Filters.Add<RequestFilter>();
 });
 
 builder.Services.AddDbContext<Auto_Inteligent_Wms_DbContext>(option => {

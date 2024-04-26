@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,11 +15,13 @@ namespace Auto_Intelligent_Wms.Core.Model.RequestDTO.Supplier
         /// <summary>
         /// 供应商名称
         /// </summary>
+        [Required(ErrorMessage = "供应商名称不能为空")]
         public string Name { get; set; }
 
         /// <summary>
         /// 供应商编码
         /// </summary>
+        [Required(ErrorMessage = "供应商编码不能为空")]
         public string Code { get; set; }
 
         /// <summary>
