@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Auto_Intelligent_Wms.Core.Common.MiddleWares
+namespace Auto_Intelligent_Wms.Core.Extensions.MiddleWares
 {
     public class ExceptionHandlingMiddleWare
     {

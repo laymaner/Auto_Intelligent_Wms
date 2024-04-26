@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Auto_Intelligent_Wms.Core.Common\Auto_Intelligent_Wms.Core.Common.csproj" />
+    <ProjectReference Include="..\Auto_Intelligent_Wms.Core.Extensions\Auto_Intelligent_Wms.Core.Extensions.csproj" />
     <ProjectReference Include="..\Auto_Intelligent_Wms.Core.IServices\Auto_Intelligent_Wms.Core.IServices.csproj" />
     <ProjectReference Include="..\Auto_Intelligent_Wms.Core.Model\Auto_Intelligent_Wms.Core.Model.csproj" />
   </ItemGroup>

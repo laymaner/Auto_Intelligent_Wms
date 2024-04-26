@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Auto_Intelligent_Wms.Core.Common.Filter
+namespace Auto_Intelligent_Wms.Core.Extensions.Filter
 {
     public class RateLimitFilter : IAsyncActionFilter
     {

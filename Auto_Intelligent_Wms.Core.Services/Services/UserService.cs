@@ -1,6 +1,6 @@
-﻿using Auto_Intelligent_Wms.Core.Common.Attri;
-using Auto_Intelligent_Wms.Core.Common.Enum;
+﻿using Auto_Intelligent_Wms.Core.Common.Enum;
 using Auto_Intelligent_Wms.Core.Common.Utils;
+using Auto_Intelligent_Wms.Core.Extensions.Attri;
 using Auto_Intelligent_Wms.Core.IServices.IServices;
 using Auto_Intelligent_Wms.Core.Model.BaseModel;
 using Auto_Intelligent_Wms.Core.Model.Entities;
@@ -255,6 +255,7 @@ namespace Auto_Intelligent_Wms.Core.Services.Services
         /// <param name="path"></param>
         /// <param name="currentUserId"></param>
         /// <returns></returns>
+        [Transation]
         public async Task<string> ImportAsync(string path, string currentUserId)
         {
             var result = MiniExcelUtil.Import<UserDownloadTemplate>(path).ToList();

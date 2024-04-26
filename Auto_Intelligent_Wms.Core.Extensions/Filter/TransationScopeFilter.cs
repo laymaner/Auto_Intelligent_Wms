@@ -1,4 +1,4 @@
-﻿using Auto_Intelligent_Wms.Core.Common.Attri;
+﻿using Auto_Intelligent_Wms.Core.Extensions.Attri;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace Auto_Intelligent_Wms.Core.Common.Filter
+namespace Auto_Intelligent_Wms.Core.Extensions.Filter
 {
     public class TransationScopeFilter : IAsyncActionFilter
     {

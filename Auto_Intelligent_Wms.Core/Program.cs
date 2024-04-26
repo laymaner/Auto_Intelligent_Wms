@@ -10,7 +10,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using NLog.Extensions.Logging;
 using NLog.Config;
-using Auto_Intelligent_Wms.Core.Common.Filter;
+using Auto_Intelligent_Wms.Core.Extensions.Filter;
 using Auto_Intelligent_Wms.Core.Model.Entities;
 using Mask_STK.Core.WebApi.Models;
 
