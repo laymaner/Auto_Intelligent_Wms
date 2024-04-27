@@ -43,6 +43,10 @@ namespace Mask_STK.Core.WebApi.Models
 
         public DbSet<PassageWay> PassageWays { get; set; }
 
+        public DbSet<Label> Labels { get; set; }
+
+        public DbSet<Position> Positions { get; set; }
+
 
 
 

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace Auto_Intelligent_Wms.Core.Model.Entities
 {
     /// <summary>
-    /// 入库单明细
+    /// 存放精确位置
     /// </summary>
-    public class ImpOrder_Items
+    public class Position
     {
         /// <summary>
         /// 主键id
@@ -17,64 +17,64 @@ namespace Auto_Intelligent_Wms.Core.Model.Entities
         public long Id { get; set; }
 
         /// <summary>
-        /// 入库单id
+        /// 存放精确位置名称
         /// </summary>
-        public long ImpOrderId { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
-        /// Castle编码
+        /// 存放精确位置编码 01010101  ----第一巷道 第一排 第一列 第一层 第一格
         /// </summary>
-        public string CastleCode { get; set; }
+        public string Code { get; set; }
 
         /// <summary>
-        /// Castle类型
+        /// 货位id
         /// </summary>
-        public string CastleType { get; set; }
+        public long LocationId { get; set; }
 
         /// <summary>
-        /// 仓储库区位置
-        /// </summary>
-        public string AreaCode { get; set; }
-
-        /// <summary>
-        /// 仓储货架位置
-        /// </summary>
-        public string ShelfCode { get; set; }
-
-        /// <summary>
-        /// 仓储货位位置
+        /// 货位编码
         /// </summary>
         public string LocationCode { get; set; }
 
         /// <summary>
-        /// 存放精确位置编码
+        /// 货位名称
         /// </summary>
-        public string PositionCode { get; set; }
+        public string LocationName { get; set; }
 
         /// <summary>
-        /// 物料编码
+        /// 巷道
         /// </summary>
-        public string MaterialCode { get; set; }
+        public int RoadWay { get; set; }
 
         /// <summary>
-        /// 批次号
+        /// 排
         /// </summary>
-        public string BatchNo { get; set; }
+        public int LRow { get; set; }
 
         /// <summary>
-        /// 入库口
+        /// 列
         /// </summary>
-        public string PassageWayCode { get; set; }
+        public int LColumn { get; set; }
 
         /// <summary>
-        /// 计划入库货物数量
+        /// 层
         /// </summary>
-        public decimal PlanImpQuantity { get; set; }
+        public int Layer { get; set; }
 
         /// <summary>
-        /// 实际入库货物数量
+        /// 第几格
         /// </summary>
-        public decimal ActualImpQuantity { get; set; }
+        public int Lattice { get; set; }
+
+        /// <summary>
+        /// 入库锁定标识 0：未锁定 1：已锁定
+        /// </summary>
+        public int ImpLock { get; set; }
+
+        /// <summary>
+        /// 出库锁定标识 0：未锁定 1：已锁定
+        /// </summary>
+        public int ExpLock { get; set; }
 
         /// <summary>
         /// 状态
@@ -106,6 +106,5 @@ namespace Auto_Intelligent_Wms.Core.Model.Entities
         /// 更新人
         /// </summary>
         public long? Updator { get; set; }
-
     }
 }

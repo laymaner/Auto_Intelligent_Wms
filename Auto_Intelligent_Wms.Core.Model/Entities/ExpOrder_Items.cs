@@ -47,6 +47,11 @@ namespace Auto_Intelligent_Wms.Core.Model.Entities
         public string LocationCode { get; set; }
 
         /// <summary>
+        /// 存放精确位置编码
+        /// </summary>
+        public string PositionCode { get; set; }
+
+        /// <summary>
         /// 物料编码
         /// </summary>
         public string MaterialCode { get; set; }
@@ -55,6 +60,11 @@ namespace Auto_Intelligent_Wms.Core.Model.Entities
         /// 批次号
         /// </summary>
         public string BatchNo { get; set; }
+
+        /// <summary>
+        /// SnCode
+        /// </summary>
+        public string SnCode { get; set; }
 
         /// <summary>
         /// 出库口编码

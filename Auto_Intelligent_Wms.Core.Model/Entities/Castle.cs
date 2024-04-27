@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Auto_Intelligent_Wms.Core.Model.Entities
 {
     /// <summary>
-    /// 货物装载容器
+    /// 货物装载容器记录
     /// </summary>
     public class Castle
     {
@@ -37,34 +37,20 @@ namespace Auto_Intelligent_Wms.Core.Model.Entities
         public string? AffiliatedUnit { get; set; }
 
         /// <summary>
-        /// 存储货位id
+        /// 清洗前原编码集合 例如 A001,A002,A003 后续叠加 逗号分割
         /// </summary>
-        public long? LocationId { get; set; }
+        public string OriginalCode { get; set; }
 
         /// <summary>
-        /// 存储货位名称
+        /// 清洗次数
         /// </summary>
-        public string? LocationName { get; set; }
-
-        /// <summary>
-        /// 存储货位编码
-        /// </summary>
-        public string? LocationCode { get; set; }
-
-        /// <summary>
-        /// 存储状态 不在货位/在货位/任务中
-        /// </summary>
-        public int? StorageStatus { get; set; }
+        public int CleanCount { get; set; }
 
         /// <summary>
         /// 状态
         /// </summary>
         public int Status { get; set; }
 
-        /// <summary>
-        /// 是否有货 Y/N
-        /// </summary>
-        public string? HasGoods { get; set; }
 
         /// <summary>
         /// 备注

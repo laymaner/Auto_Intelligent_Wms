@@ -21,8 +21,10 @@ namespace Auto_Intelligent_Wms.Core.Model.Config
             builder.Property(m => m.AreaCode).HasMaxLength(50).HasComment("仓储库区位置");
             builder.Property(m => m.ShelfCode).HasMaxLength(50).HasComment("仓储货架位置");
             builder.Property(m => m.LocationCode).HasMaxLength(50).HasComment("仓储货位位置");
+            builder.Property(m => m.PositionCode).HasMaxLength(50).HasComment("存放精确位置编码");
             builder.Property(m => m.MaterialCode).HasMaxLength(50).HasComment("物料编码");
             builder.Property(m => m.BatchNo).HasMaxLength(50).HasComment("批次号");
+            builder.Property(m => m.SnCode).HasMaxLength(100).HasComment("SnCode");
             builder.Property(m => m.PassageWayCode).HasMaxLength(50).HasComment("出库口编码");
             builder.Property(m => m.PlanExpQuantity).HasComment("计划出库货物数量");
             builder.Property(m => m.ActualExpQuantity).HasComment("实际出库货物数量");

@@ -18,6 +18,9 @@ namespace Auto_Intelligent_Wms.Core.Model.Config
             builder.Property(m => m.WareHouseCode).HasMaxLength(50).HasComment("仓库编码");
             builder.Property(m => m.AreaCode).HasMaxLength(50).HasComment("库区编码");
             builder.Property(m => m.ShelfCode).HasMaxLength(50).HasComment("货架编码");
+            builder.Property(m => m.LocationCode).HasMaxLength(50).HasComment("货位编码");
+            builder.Property(m => m.PositionCode).HasMaxLength(50).HasComment("精确存储位置编码");
+            builder.Property(m => m.SnCode).HasMaxLength(100).HasComment("SnCode");
             builder.Property(m => m.CastleCode).HasMaxLength(50).HasComment("Castle编码");
             builder.Property(m => m.CastleType).HasComment("Castle类型");
             builder.Property(m => m.SupplierCode).HasMaxLength(50).HasComment("供应商编码");

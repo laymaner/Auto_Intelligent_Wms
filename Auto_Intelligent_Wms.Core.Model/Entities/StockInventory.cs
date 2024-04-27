@@ -37,6 +37,16 @@ namespace Auto_Intelligent_Wms.Core.Model.Entities
         public string LocationCode { get; set; }
 
         /// <summary>
+        /// 存放精确位置编码
+        /// </summary>
+        public string PositionCode { get; set; }
+
+        /// <summary>
+        /// 标签
+        /// </summary>
+        public string SnCode { get; set; }
+
+        /// <summary>
         /// Castle编码
         /// </summary>
         public string CastleCode { get; set; }

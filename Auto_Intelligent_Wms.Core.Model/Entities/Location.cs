@@ -56,16 +56,6 @@
         public int Layer { get; set; }
 
         /// <summary>
-        /// 入库锁定标识 0：未锁定 1：已锁定
-        /// </summary>
-        public int ImpLock { get; set; }
-
-        /// <summary>
-        /// 出库锁定标识 0：未锁定 1：已锁定
-        /// </summary>
-        public int ExpLock { get; set; }
-
-        /// <summary>
         /// 状态
         /// </summary>
         public int Status { get; set; }
